@@ -1,6 +1,6 @@
 ﻿using PokerApp.Core.Models;
 
-namespace PoketApp.Tests;
+namespace PokerApp.Tests;
 
 [TestFixture]
 public class CardTests

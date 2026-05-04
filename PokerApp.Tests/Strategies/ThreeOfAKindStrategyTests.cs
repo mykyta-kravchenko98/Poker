@@ -1,7 +1,7 @@
 ﻿using PokerApp.Core.Evaluation;
 using PokerApp.Core.Models;
 
-namespace PoketApp.Tests;
+namespace PokerApp.Tests.Strategies;
 
 [TestFixture]
 public class ThreeOfAKindStrategyTests

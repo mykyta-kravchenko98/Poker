@@ -6,7 +6,6 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
-        <RootNamespace>PoketApp.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
