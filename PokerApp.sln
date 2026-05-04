@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerApp.Core", "PokerApp.Core\PokerApp.Core.csproj", "{61B2A157-00B9-4F8D-B287-B430445B9991}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoketApp.Tests", "PoketApp.Tests\PoketApp.Tests.csproj", "{D330C7F1-C327-4EB4-8A6E-EA582BBB0734}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerApp.Tests", "PokerApp.Tests\PokerApp.Tests.csproj", "{D330C7F1-C327-4EB4-8A6E-EA582BBB0734}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

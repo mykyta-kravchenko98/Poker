@@ -4,7 +4,7 @@ using PokerApp.Core.Models;
 namespace PoketApp.Tests;
 
 [TestFixture]
-public class GameTests
+public class HighCardStrategyTests
 {
     [Test]
     public void Game_WithTwoHands_HigherCardWins()
@@ -64,10 +64,10 @@ public class GameTests
         var hand3 = new Hand(new[]
         {
             new Card(CardValue.Ace, CardSuit.Hearts),
-            new Card(CardValue.Three, CardSuit.Diamonds),
-            new Card(CardValue.Five, CardSuit.Clubs),
-            new Card(CardValue.Seven, CardSuit.Hearts),
-            new Card(CardValue.Nine, CardSuit.Spades)
+            new Card(CardValue.Four, CardSuit.Diamonds),
+            new Card(CardValue.Six, CardSuit.Clubs),
+            new Card(CardValue.Eight, CardSuit.Hearts),
+            new Card(CardValue.Ten, CardSuit.Spades)
         });
         
         var deal = new Dictionary<string, Hand>()
