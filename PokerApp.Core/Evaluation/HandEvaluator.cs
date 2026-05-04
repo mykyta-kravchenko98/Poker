@@ -8,6 +8,7 @@ public class HandEvaluator
 {
     private readonly IReadOnlyList<IHandStrategy> _strategies =
     [
+        new PairStrategy(),
         new HighCardStrategy()
     ];
 
