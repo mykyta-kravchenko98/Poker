@@ -1,0 +1,120 @@
+﻿using PokerApp.Core.Evaluation;
+using PokerApp.Core.Models;
+
+namespace PoketApp.Tests;
+
+[TestFixture]
+public class StraightStrategyTests
+{
+    private readonly Game _game = new();
+
+    [Test]
+    public void Game_WithTwoHands_WheelStraightBeatsThreeOfAKind()
+    {
+        var hand1 = new Hand(new[]
+        {
+            new Card(CardValue.Ace, CardSuit.Spades),
+            new Card(CardValue.Two, CardSuit.Spades),
+            new Card(CardValue.Three, CardSuit.Diamonds),
+            new Card(CardValue.Four, CardSuit.Clubs),
+            new Card(CardValue.Five, CardSuit.Hearts)
+        });
+
+        var hand2 = new Hand(new[]
+        {
+            new Card(CardValue.Ace, CardSuit.Hearts),
+            new Card(CardValue.Ace, CardSuit.Diamonds),
+            new Card(CardValue.Ace, CardSuit.Clubs),
+            new Card(CardValue.King, CardSuit.Spades),
+            new Card(CardValue.Queen, CardSuit.Spades)
+        });
+
+        var winner = _game.Play(Deal(hand1, hand2));
+
+        Assert.That(winner.Count == 1, Is.True);
+        Assert.That(winner.First(), Is.EqualTo("Nick"));
+    }
+
+    [Test]
+    public void Game_WithTwoHands_HighStraightBeatsStraight()
+    {
+        var hand1 = new Hand(new[]
+        {
+            new Card(CardValue.Five, CardSuit.Clubs),
+            new Card(CardValue.Six, CardSuit.Spades),
+            new Card(CardValue.Seven, CardSuit.Spades),
+            new Card(CardValue.Eight, CardSuit.Spades),
+            new Card(CardValue.Nine, CardSuit.Hearts)
+        });
+
+        var hand2 = new Hand(new[]
+        {
+            new Card(CardValue.Six, CardSuit.Hearts),
+            new Card(CardValue.Seven, CardSuit.Diamonds),
+            new Card(CardValue.Eight, CardSuit.Clubs),
+            new Card(CardValue.Nine, CardSuit.Spades),
+            new Card(CardValue.Ten, CardSuit.Spades)
+        });
+
+        var winner = _game.Play(Deal(hand1, hand2));
+
+        Assert.That(winner.Count == 1, Is.True);
+        Assert.That(winner.First(), Is.EqualTo("King"));
+    }
+
+    [Test]
+    public void Game_WithTwoHands_WheelStraightLosesToNormalStraight()
+    {
+        var hand1 = new Hand(new[]
+        {
+            new Card(CardValue.Ace, CardSuit.Clubs),
+            new Card(CardValue.Two, CardSuit.Spades),
+            new Card(CardValue.Three, CardSuit.Diamonds),
+            new Card(CardValue.Four, CardSuit.Clubs),
+            new Card(CardValue.Five, CardSuit.Hearts)
+        });
+
+        var hand2 = new Hand(new[]
+        {
+            new Card(CardValue.Two, CardSuit.Hearts),
+            new Card(CardValue.Three, CardSuit.Hearts),
+            new Card(CardValue.Four, CardSuit.Spades),
+            new Card(CardValue.Five, CardSuit.Spades),
+            new Card(CardValue.Six, CardSuit.Spades)
+        });
+
+        var winner = _game.Play(Deal(hand1, hand2));
+
+        Assert.That(winner.Count == 1, Is.True);
+        Assert.That(winner.First(), Is.EqualTo("King"));
+    }
+
+    [Test]
+    public void Game_WithTwoHands_StraightDraw()
+    {
+        var hand1 = new Hand(new[]
+        {
+            new Card(CardValue.Ace, CardSuit.Clubs),
+            new Card(CardValue.Two, CardSuit.Spades),
+            new Card(CardValue.Three, CardSuit.Diamonds),
+            new Card(CardValue.Four, CardSuit.Clubs),
+            new Card(CardValue.Five, CardSuit.Hearts)
+        });
+
+        var hand2 = new Hand(new[]
+        {
+            new Card(CardValue.Ace, CardSuit.Hearts),
+            new Card(CardValue.Two, CardSuit.Hearts),
+            new Card(CardValue.Three, CardSuit.Spades),
+            new Card(CardValue.Four, CardSuit.Spades),
+            new Card(CardValue.Five, CardSuit.Spades)
+        });
+
+        var winner = _game.Play(Deal(hand1, hand2));
+
+        Assert.That(winner.Count == 2, Is.True);
+    }
+    
+    private static Dictionary<string, Hand> Deal(Hand hand1, Hand hand2) =>
+        new() { { "Nick", hand1 }, { "King", hand2 } };
+}

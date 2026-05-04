@@ -9,6 +9,7 @@ public class HandEvaluator
     //from higher combination to lower
     private readonly IReadOnlyList<IHandStrategy> _strategies =
     [
+        new StraightStrategy(),
         new ThreeOfAKindStrategy(),
         new TwoPairsStrategy(),
         new PairStrategy(),
