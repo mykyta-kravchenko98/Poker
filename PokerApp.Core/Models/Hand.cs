@@ -8,6 +8,9 @@ public class Hand
     {
         var cardSet = new HashSet<Card>(cards);
         
+        if (cardSet.Count != cardSet.Distinct().Count())
+            throw new ArgumentException("Hand contains duplicate cards.");
+        
         if (cardSet.Count != 5)
             throw new ArgumentException("Hand must contain exactly 5 cards.");
             

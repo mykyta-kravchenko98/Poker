@@ -3,7 +3,7 @@ using PokerApp.Core.Models;
 
 namespace PokerApp.Core.Evaluation;
 
-//aggrigate strategies and define hand combination
+// aggregate strategies and define hand combination
 public class HandEvaluator
 {
     //from higher combination to lower
