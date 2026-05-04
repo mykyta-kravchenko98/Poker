@@ -6,10 +6,12 @@ namespace PokerApp.Core.Evaluation;
 //aggrigate strategies and define hand combination
 public class HandEvaluator
 {
+    //from higher combination to lower
     private readonly IReadOnlyList<IHandStrategy> _strategies =
     [
+        new TwoPairsStrategy(),
         new PairStrategy(),
-        new HighCardStrategy()
+        new HighCardStrategy(),
     ];
 
     public HandScore Evaluate(Hand hand) =>
