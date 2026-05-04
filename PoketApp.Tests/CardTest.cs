@@ -43,15 +43,35 @@ public class CardTests
     [Test]
     public void Hand_ShouldContainFiveCards()
     {
-        var hand = new Hand(new[]
-        {
-            new Card(Rank.Ace, Suit.Hearts),
-            new Card(Rank.King, Suit.Hearts),
-            new Card(Rank.Queen, Suit.Hearts),
-            new Card(Rank.Jack, Suit.Hearts),
-            new Card(Rank.Ten, Suit.Hearts)
-        });
+        var hand = new Hand([
+            new Card(CardValue.Ace, CardSuit.Hearts),
+            new Card(CardValue.King, CardSuit.Hearts),
+            new Card(CardValue.Queen, CardSuit.Hearts),
+            new Card(CardValue.Jack, CardSuit.Hearts),
+            new Card(CardValue.Ten, CardSuit.Hearts)
+        ]);
         
         Assert.That(hand.Cards.Count, Is.EqualTo(5));
+    }
+    
+    [Test]
+    public void Hand_WithLessThanFiveCards_ShouldThrow()
+    {
+        Assert.Throws<ArgumentException>(() => new Hand([
+            new Card(CardValue.Ace, CardSuit.Hearts),
+            new Card(CardValue.King, CardSuit.Hearts)
+        ]));
+    }
+    
+    [Test]
+    public void Hand_WithDuplicatedCards_ShouldThrow()
+    {
+        Assert.Throws<ArgumentException>(() => new Hand([
+            new Card(CardValue.Ace, CardSuit.Hearts),
+            new Card(CardValue.King, CardSuit.Hearts),
+            new Card(CardValue.Queen, CardSuit.Hearts),
+            new Card(CardValue.Ten, CardSuit.Hearts),
+            new Card(CardValue.Ten, CardSuit.Hearts)
+        ]));
     }
 }
