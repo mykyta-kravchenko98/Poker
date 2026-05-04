@@ -1,0 +1,16 @@
+﻿using PokerApp.Core.Evaluation.Strategies;
+using PokerApp.Core.Models;
+
+namespace PokerApp.Core.Evaluation;
+
+//aggrigate strategies and define hand combination
+public class HandEvaluator
+{
+    private readonly IReadOnlyList<IHandStrategy> _strategies =
+    [
+        new HighCardStrategy()
+    ];
+
+    public HandScore Evaluate(Hand hand) =>
+        _strategies.First(s => s.Matches(hand)).Evaluate(hand);
+}
